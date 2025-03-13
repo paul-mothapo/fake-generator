@@ -39,6 +39,12 @@ export default function HeroSection() {
               <AlertTriangle className="mr-2 h-4 w-4 text-red-500" />
               For educational purposes only. Do not use for illegal activities.
             </div>
+            <div className="flex items-center text-sm py-2">
+              This was Inspired by the work of
+              <a href="https://chris927.github.io/generate-sa-idnumbers/" target="_blank" rel="noopener noreferrer" className="text-blue-500 ml-1 underline">
+                chris927
+              </a>
+            </div>
           </div>
 
           <div className="lg:col-span-4 hidden lg:flex items-center">
