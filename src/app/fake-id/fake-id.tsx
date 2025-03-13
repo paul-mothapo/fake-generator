@@ -118,14 +118,6 @@ export function FakeIdGenerator() {
     <div className="container mx-auto px-4 py-8">
       <Toaster position="top-right" />
 
-      <head>
-        <title>Fake ID Generator - Generate South African ID Numbers</title>
-        <meta name="description" content="Generate fake South African ID numbers for testing and educational purposes." />
-        <meta name="keywords" content="fake ID, South African ID, ID generator, testing, educational" />
-        <meta name="author" content="Paul Mothapo" />
-        <link rel="canonical" href="https://fakegenerator.vercel.app/fake-id" />
-      </head>
-
       <h1 className="text-3xl font-bold mb-6 text-gray-900" aria-label="Generate Fake South African ID Numbers">Generate (Fake) South-African ID Numbers</h1>
 
       <div className="flex flex-col lg:flex-row gap-6">
@@ -336,7 +328,7 @@ export function FakeIdGenerator() {
         </div>
       </div>
 
-      <div className="mt-8 max-w-7xl mx-auto fixed bottom-0 left-0 right-0 bg-white p-4 border-t border-gray-200">
+      <div className="mt-56 max-w-7xl mx-auto left-0 right-0 bg-white p-4 border-t border-gray-200">
         <h2 className="text-xl font-semibold mb-4 text-gray-900">More Information</h2>
         <p className="mb-2 text-gray-700">
           See{" "}
