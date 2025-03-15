@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -16,7 +16,11 @@ export const metadata: Metadata = {
   title: "Fake Generator",
   description: "Generate fake identities, personal details, and identity documents for development, testing, and demonstration purposes.",
   keywords: "fake identity, identity generator, testing, development, demonstration",
-  viewport: "width=device-width, initial-scale=1.0"
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1.0,
 };
 
 export default function RootLayout({

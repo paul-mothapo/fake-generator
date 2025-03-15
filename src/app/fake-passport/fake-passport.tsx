@@ -2,8 +2,9 @@
 
 import type React from "react";
 import { useState } from "react";
-import { Copy, RefreshCw, ChevronDown, ChevronUp } from "lucide-react";
+import { Copy, RefreshCw, ChevronDown, ChevronUp, ChevronLeft } from "lucide-react";
 import toast, { Toaster } from "react-hot-toast";
+import Link from "next/link";
 import { nationalities } from "@/constants/countries";
 import { generatePassportNumber } from "@/constants/randomPassport";
 import { commonCities } from "@/constants/cities";
@@ -113,21 +114,29 @@ export function FakePassportGenerator() {
     <div className="container mx-auto px-4 py-8">
       <Toaster position="top-right" />
 
-      <h1 className="text-3xl font-bold mb-6 text-gray-900">
-        Generate (Fake) Passport Details
-      </h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-bold text-neutral-900">
+          Generate (Fake) Passport Details
+        </h1>
+        <Link 
+          href="/" 
+          className="inline-flex items-center text-neutral-700 hover:text-black font-medium"
+        >
+          <ChevronLeft className="mr-2 h-4 w-4" /> Back
+        </Link>
+      </div>
 
       <div className="flex flex-col lg:flex-row gap-6">
-        <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200 lg:w-2/3">
+        <div className="bg-white rounded-lg shadow-md p-6 border border-neutral-200 lg:w-2/3">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold text-gray-900">
+              <h2 className="text-xl font-semibold text-neutral-900">
                 Passport Generator
               </h2>
               <button
                 type="button"
                 onClick={randomize}
-                className="bg-black hover:bg-gray-800 text-white font-medium py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 flex items-center"
+                className="bg-black hover:bg-neutral-800 text-white font-medium py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:ring-offset-2 flex items-center"
               >
                 <RefreshCw className="w-4 h-4 mr-2" />
                 Randomize
@@ -136,37 +145,37 @@ export function FakePassportGenerator() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-neutral-700">
                   Surname
                 </label>
                 <input
                   type="text"
                   value={surname}
                   onChange={(e) => setSurname(e.target.value)}
-                  className="block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
+                  className="block w-full rounded-md border border-neutral-300 bg-white py-2 px-3 shadow-sm focus:border-neutral-500 focus:outline-none focus:ring-1 focus:ring-neutral-500"
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-neutral-700">
                   Given Names
                 </label>
                 <input
                   type="text"
                   value={givenNames}
                   onChange={(e) => setGivenNames(e.target.value)}
-                  className="block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
+                  className="block w-full rounded-md border border-neutral-300 bg-white py-2 px-3 shadow-sm focus:border-neutral-500 focus:outline-none focus:ring-1 focus:ring-neutral-500"
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-neutral-700">
                   Nationality
                 </label>
                 <select
                   value={nationality}
                   onChange={(e) => setNationality(e.target.value)}
-                  className="block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
+                  className="block w-full rounded-md border border-neutral-300 bg-white py-2 px-3 shadow-sm focus:border-neutral-500 focus:outline-none focus:ring-1 focus:ring-neutral-500"
                 >
                   {nationalities.map((nat) => (
                     <option key={nat.code} value={nat.code}>
@@ -177,31 +186,31 @@ export function FakePassportGenerator() {
               </div>
 
               <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-neutral-700">
                   Date of Birth
                 </label>
                 <input
                   type="date"
                   value={birthDate}
                   onChange={(e) => setBirthDate(e.target.value)}
-                  className="block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
+                  className="block w-full rounded-md border border-neutral-300 bg-white py-2 px-3 shadow-sm focus:border-neutral-500 focus:outline-none focus:ring-1 focus:ring-neutral-500"
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-neutral-700">
                   Place of Birth
                 </label>
                 <input
                   type="text"
                   value={placeOfBirth}
                   onChange={(e) => setPlaceOfBirth(e.target.value)}
-                  className="block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
+                  className="block w-full rounded-md border border-neutral-300 bg-white py-2 px-3 shadow-sm focus:border-neutral-500 focus:outline-none focus:ring-1 focus:ring-neutral-500"
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-neutral-700">
                   Gender
                 </label>
                 <div className="flex space-x-4">
@@ -213,9 +222,9 @@ export function FakePassportGenerator() {
                       value="F"
                       checked={gender === "F"}
                       onChange={() => setGender("F")}
-                      className="h-4 w-4 text-black focus:ring-gray-500 border-gray-300"
+                      className="h-4 w-4 text-black focus:ring-neutral-500 border-neutral-300"
                     />
-                    <label htmlFor="female" className="ml-2 text-sm text-gray-700">
+                    <label htmlFor="female" className="ml-2 text-sm text-neutral-700">
                       Female
                     </label>
                   </div>
@@ -227,9 +236,9 @@ export function FakePassportGenerator() {
                       value="M"
                       checked={gender === "M"}
                       onChange={() => setGender("M")}
-                      className="h-4 w-4 text-black focus:ring-gray-500 border-gray-300"
+                      className="h-4 w-4 text-black focus:ring-neutral-500 border-neutral-300"
                     />
-                    <label htmlFor="male" className="ml-2 text-sm text-gray-700">
+                    <label htmlFor="male" className="ml-2 text-sm text-neutral-700">
                       Male
                     </label>
                   </div>
@@ -240,7 +249,7 @@ export function FakePassportGenerator() {
             <button
               type="button"
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-black text-sm font-medium flex items-center"
+              className="text-neutral-700 hover:text-black text-sm font-medium flex items-center"
             >
               {isOpen ? (
                 <>
@@ -254,29 +263,29 @@ export function FakePassportGenerator() {
             </button>
 
             {isOpen && (
-              <div className="mt-4 space-y-4 p-4 bg-gray-50 rounded-md border border-gray-200">
+              <div className="mt-4 space-y-4 p-4 bg-neutral-50 rounded-md border border-neutral-200">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="block text-sm font-medium text-gray-700">
+                    <label className="block text-sm font-medium text-neutral-700">
                       Date of Issue
                     </label>
                     <input
                       type="date"
                       value={dateOfIssue}
                       onChange={(e) => setDateOfIssue(e.target.value)}
-                      className="block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
+                      className="block w-full rounded-md border border-neutral-300 bg-white py-2 px-3 shadow-sm focus:border-neutral-500 focus:outline-none focus:ring-1 focus:ring-neutral-500"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <label className="block text-sm font-medium text-gray-700">
+                    <label className="block text-sm font-medium text-neutral-700">
                       Date of Expiry
                     </label>
                     <input
                       type="date"
                       value={dateOfExpiry}
                       onChange={(e) => setDateOfExpiry(e.target.value)}
-                      className="block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
+                      className="block w-full rounded-md border border-neutral-300 bg-white py-2 px-3 shadow-sm focus:border-neutral-500 focus:outline-none focus:ring-1 focus:ring-neutral-500"
                     />
                   </div>
                 </div>
@@ -285,7 +294,7 @@ export function FakePassportGenerator() {
 
             <button
               type="submit"
-              className="bg-black hover:bg-gray-800 text-white font-medium py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+              className="bg-black hover:bg-neutral-800 text-white font-medium py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:ring-offset-2"
             >
               Generate Passport Number
             </button>
@@ -293,35 +302,35 @@ export function FakePassportGenerator() {
         </div>
 
         <div className="lg:w-1/3 space-y-6">
-          <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200 sticky top-4">
+          <div className="bg-white rounded-lg shadow-md p-6 border border-neutral-200 sticky top-4">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold text-gray-900">Result</h2>
+              <h2 className="text-xl font-semibold text-neutral-900">Result</h2>
               <button
                 onClick={() => setIsJsonFormat(!isJsonFormat)}
-                className="text-sm text-gray-600 hover:text-black underline"
+                className="text-sm text-neutral-600 hover:text-black underline"
               >
                 Switch to {isJsonFormat ? "Plain Text" : "JSON"}
               </button>
             </div>
-            <div className="p-4 bg-gray-50 rounded-md border border-gray-200">
+            <div className="p-4 bg-neutral-50 rounded-md border border-neutral-200">
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <p className="text-sm text-gray-600">Passport Number</p>
+                  <p className="text-sm text-neutral-600">Passport Number</p>
                   <button
                     onClick={() => copyToClipboard("passportNumber")}
-                    className="text-xs text-gray-500 hover:text-black"
+                    className="text-xs text-neutral-500 hover:text-black"
                   >
                     <Copy className="w-3 h-3" />
                   </button>
                 </div>
-                <p className="text-lg font-mono break-all text-gray-800">
+                <p className="text-lg font-mono break-all text-neutral-800">
                   {passportNumber}
                 </p>
               </div>
-              <div className="mt-4 pt-4 border-t border-gray-200">
-                <p className="text-sm text-gray-600 mb-2">Full Details</p>
+              <div className="mt-4 pt-4 border-t border-neutral-200">
+                <p className="text-sm text-neutral-600 mb-2">Full Details</p>
                 {isJsonFormat ? (
-                  <pre className="text-sm font-mono break-all text-gray-800 whitespace-pre-wrap">
+                  <pre className="text-sm font-mono break-all text-neutral-800 whitespace-pre-wrap">
                     {JSON.stringify(
                       {
                         surname,
@@ -353,12 +362,12 @@ export function FakePassportGenerator() {
                     ].map(({ key, value }) => (
                       <div key={key} className="flex justify-between items-center">
                         <div>
-                          <span className="text-sm text-gray-600">{key}: </span>
-                          <span className="font-mono text-gray-800">{value}</span>
+                          <span className="text-sm text-neutral-600">{key}: </span>
+                          <span className="font-mono text-neutral-800">{value}</span>
                         </div>
                         <button
                           onClick={() => copyToClipboard(key)}
-                          className="text-gray-500 hover:text-black"
+                          className="text-neutral-500 hover:text-black"
                         >
                           <Copy className="w-3 h-3" />
                         </button>
@@ -371,7 +380,7 @@ export function FakePassportGenerator() {
             <div className="mt-4">
               <button
                 onClick={() => copyToClipboard()}
-                className="text-sm text-gray-700 hover:text-black font-medium flex items-center"
+                className="text-sm text-neutral-700 hover:text-black font-medium flex items-center"
               >
                 <Copy className="w-4 h-4 mr-1" /> Copy all to clipboard
               </button>
@@ -381,10 +390,10 @@ export function FakePassportGenerator() {
       </div>
 
       <div className="mt-12">
-        <h2 className="text-xl font-semibold mb-4 text-gray-900">
+        <h2 className="text-xl font-semibold mb-4 text-neutral-900">
           Important Notice
         </h2>
-        <p className="text-gray-700">
+        <p className="text-neutral-700">
           This passport generator is for testing and educational purposes only. The generated
           passports are not valid for any official use and should not be used for any
           illegal activities.

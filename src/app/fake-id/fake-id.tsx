@@ -3,8 +3,15 @@
 import type React from "react";
 
 import { useState, useEffect } from "react";
-import { Copy, RefreshCw, ChevronDown, ChevronUp } from "lucide-react";
+import {
+  Copy,
+  RefreshCw,
+  ChevronDown,
+  ChevronUp,
+  ChevronLeft,
+} from "lucide-react";
 import toast, { Toaster } from "react-hot-toast";
+import Link from "next/link";
 
 export function FakeIdGenerator() {
   const [year, setYear] = useState<string>("90");
@@ -123,24 +130,29 @@ export function FakeIdGenerator() {
     <div className="container mx-auto px-4 py-8">
       <Toaster position="top-right" />
 
-      <h1
-        className="text-3xl font-bold mb-6 text-gray-900"
-        aria-label="Generate Fake South African ID Numbers"
-      >
-        Generate (Fake) South-African ID Numbers
-      </h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-bold text-neutral-900">
+          Generate (Fake) South-African ID Numbers
+        </h1>
+        <Link
+          href="/"
+          className="inline-flex items-center text-neutral-700 hover:text-black font-medium"
+        >
+          <ChevronLeft className="mr-2 h-4 w-4" /> Back
+        </Link>
+      </div>
 
       <div className="flex flex-col lg:flex-row gap-6">
-        <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200 lg:w-2/3">
+        <div className="bg-white rounded-lg shadow-md p-6 border border-neutral-200 lg:w-2/3">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold text-gray-900">
+              <h2 className="text-xl font-semibold text-neutral-900">
                 ID Generator
               </h2>
               <button
                 type="button"
                 onClick={randomize}
-                className="bg-black hover:bg-gray-800 text-white font-medium py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 flex items-center"
+                className="bg-black hover:bg-neutral-800 text-white font-medium py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:ring-offset-2 flex items-center"
               >
                 <RefreshCw className="w-4 h-4 mr-2" />
                 Randomize
@@ -151,7 +163,7 @@ export function FakeIdGenerator() {
               <div className="space-y-2">
                 <label
                   htmlFor="year"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-neutral-700"
                   aria-label="Year of Birth"
                 >
                   Year of Birth
@@ -160,7 +172,7 @@ export function FakeIdGenerator() {
                   id="year"
                   value={year}
                   onChange={(e) => setYear(e.target.value)}
-                  className="block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
+                  className="block w-full rounded-md border border-neutral-300 bg-white py-2 px-3 shadow-sm focus:border-neutral-500 focus:outline-none focus:ring-1 focus:ring-neutral-500"
                 >
                   {years.map((y) => (
                     <option key={y} value={y}>
@@ -173,7 +185,7 @@ export function FakeIdGenerator() {
               <div className="space-y-2">
                 <label
                   htmlFor="month"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-neutral-700"
                   aria-label="Month of Birth"
                 >
                   Month of Birth
@@ -182,7 +194,7 @@ export function FakeIdGenerator() {
                   id="month"
                   value={month}
                   onChange={(e) => setMonth(e.target.value)}
-                  className="block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
+                  className="block w-full rounded-md border border-neutral-300 bg-white py-2 px-3 shadow-sm focus:border-neutral-500 focus:outline-none focus:ring-1 focus:ring-neutral-500"
                 >
                   {months.map((m) => (
                     <option key={m} value={m}>
@@ -195,7 +207,7 @@ export function FakeIdGenerator() {
               <div className="space-y-2">
                 <label
                   htmlFor="day"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-neutral-700"
                   aria-label="Day of Birth"
                 >
                   Day of Birth
@@ -204,7 +216,7 @@ export function FakeIdGenerator() {
                   id="day"
                   value={day}
                   onChange={(e) => setDay(e.target.value)}
-                  className="block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
+                  className="block w-full rounded-md border border-neutral-300 bg-white py-2 px-3 shadow-sm focus:border-neutral-500 focus:outline-none focus:ring-1 focus:ring-neutral-500"
                 >
                   {days.map((d) => (
                     <option key={d} value={d}>
@@ -217,7 +229,7 @@ export function FakeIdGenerator() {
 
             <div className="space-y-2">
               <label
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-neutral-700"
                 aria-label="Gender"
               >
                 Gender
@@ -231,11 +243,11 @@ export function FakeIdGenerator() {
                     value="4"
                     checked={gender === "4"}
                     onChange={() => setGender("4")}
-                    className="h-4 w-4 text-black focus:ring-gray-500 border-gray-300"
+                    className="h-4 w-4 text-black focus:ring-neutral-500 border-neutral-300"
                   />
                   <label
                     htmlFor="female"
-                    className="ml-2 text-sm text-gray-700"
+                    className="ml-2 text-sm text-neutral-700"
                   >
                     Female
                   </label>
@@ -248,9 +260,12 @@ export function FakeIdGenerator() {
                     value="5"
                     checked={gender === "5"}
                     onChange={() => setGender("5")}
-                    className="h-4 w-4 text-black focus:ring-gray-500 border-gray-300"
+                    className="h-4 w-4 text-black focus:ring-neutral-500 border-neutral-300"
                   />
-                  <label htmlFor="male" className="ml-2 text-sm text-gray-700">
+                  <label
+                    htmlFor="male"
+                    className="ml-2 text-sm text-neutral-700"
+                  >
                     Male
                   </label>
                 </div>
@@ -261,7 +276,7 @@ export function FakeIdGenerator() {
               <button
                 type="button"
                 onClick={() => setIsOpen(!isOpen)}
-                className="text-gray-700 hover:text-black text-sm font-medium flex items-center"
+                className="text-neutral-700 hover:text-black text-sm font-medium flex items-center"
               >
                 {isOpen ? (
                   <>
@@ -275,11 +290,11 @@ export function FakeIdGenerator() {
               </button>
 
               {isOpen && (
-                <div className="mt-4 space-y-4 p-4 bg-gray-50 rounded-md border border-gray-200">
+                <div className="mt-4 space-y-4 p-4 bg-neutral-50 rounded-md border border-neutral-200">
                   <div className="space-y-2">
                     <label
                       htmlFor="sequence"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-neutral-700"
                       aria-label="Sequence"
                     >
                       Sequence
@@ -288,7 +303,7 @@ export function FakeIdGenerator() {
                       id="sequence"
                       value={sequence}
                       onChange={(e) => setSequence(e.target.value)}
-                      className="block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
+                      className="block w-full rounded-md border border-neutral-300 bg-white py-2 px-3 shadow-sm focus:border-neutral-500 focus:outline-none focus:ring-1 focus:ring-neutral-500"
                     >
                       {/* Only show a subset of sequences to avoid performance issues */}
                       {sequences.slice(0, 100).map((s) => (
@@ -301,7 +316,7 @@ export function FakeIdGenerator() {
 
                   <div className="space-y-2">
                     <label
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-neutral-700"
                       aria-label="Citizenship"
                     >
                       Citizenship
@@ -315,11 +330,11 @@ export function FakeIdGenerator() {
                           value="0"
                           checked={citizenship === "0"}
                           onChange={() => setCitizenship("0")}
-                          className="h-4 w-4 text-black focus:ring-gray-500 border-gray-300"
+                          className="h-4 w-4 text-black focus:ring-neutral-500 border-neutral-300"
                         />
                         <label
                           htmlFor="citizen"
-                          className="ml-2 text-sm text-gray-700"
+                          className="ml-2 text-sm text-neutral-700"
                         >
                           Citizen
                         </label>
@@ -332,11 +347,11 @@ export function FakeIdGenerator() {
                           value="1"
                           checked={citizenship === "1"}
                           onChange={() => setCitizenship("1")}
-                          className="h-4 w-4 text-black focus:ring-gray-500 border-gray-300"
+                          className="h-4 w-4 text-black focus:ring-neutral-500 border-neutral-300"
                         />
                         <label
                           htmlFor="resident"
-                          className="ml-2 text-sm text-gray-700"
+                          className="ml-2 text-sm text-neutral-700"
                         >
                           Resident
                         </label>
@@ -349,7 +364,7 @@ export function FakeIdGenerator() {
 
             <button
               type="submit"
-              className="bg-black hover:bg-gray-800 text-white font-medium py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+              className="bg-black hover:bg-neutral-800 text-white font-medium py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:ring-offset-2"
               aria-label="Generate ID Number"
             >
               Generate ID Number
@@ -358,17 +373,19 @@ export function FakeIdGenerator() {
         </div>
 
         <div className="lg:w-1/3 space-y-6">
-          <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200 sticky top-4">
-            <h2 className="text-xl font-semibold mb-4 text-gray-900">Result</h2>
-            <div className="p-4 bg-gray-50 rounded-md border border-gray-200">
-              <p className="text-lg font-mono break-all text-gray-800">
+          <div className="bg-white rounded-lg shadow-md p-6 border border-neutral-200 sticky top-4">
+            <h2 className="text-xl font-semibold mb-4 text-neutral-900">
+              Result
+            </h2>
+            <div className="p-4 bg-neutral-50 rounded-md border border-neutral-200">
+              <p className="text-lg font-mono break-all text-neutral-800">
                 {idNumber}
               </p>
             </div>
             <div className="mt-4">
               <button
                 onClick={copyToClipboard}
-                className="text-sm text-gray-700 hover:text-black font-medium flex items-center"
+                className="text-sm text-neutral-700 hover:text-black font-medium flex items-center"
               >
                 <Copy className="w-4 h-4 mr-1" /> Copy to clipboard
               </button>
@@ -377,32 +394,32 @@ export function FakeIdGenerator() {
         </div>
       </div>
 
-      <div className="mt-56 max-w-7xl mx-auto left-0 right-0 bg-white p-4 border-t border-gray-200">
-        <h2 className="text-xl font-semibold mb-4 text-gray-900">
+      <div className="mt-56 max-w-7xl mx-auto left-0 right-0 bg-white p-4 border-t border-neutral-200">
+        <h2 className="text-xl font-semibold mb-4 text-neutral-900">
           More Information
         </h2>
-        <p className="mb-2 text-gray-700">
+        <p className="mb-2 text-neutral-700">
           See{" "}
           <a
             href="https://en.wikipedia.org/wiki/National_identification_number#South_Africa"
-            className="text-gray-900 hover:underline font-medium"
+            className="text-neutral-900 hover:underline font-medium"
           >
             Wikipedia
           </a>{" "}
           or{" "}
           <a
             href="http://knowles.co.za/generating-south-african-id-numbers/"
-            className="text-gray-900 hover:underline font-medium"
+            className="text-neutral-900 hover:underline font-medium"
           >
             this article
           </a>{" "}
           for more details about South African ID numbers.
         </p>
-        <p className="text-gray-700">
+        <p className="text-neutral-700">
           Read{" "}
           <a
             href="https://github.com/Chris927/generate-sa-idnumbers"
-            className="text-gray-900 hover:underline font-medium"
+            className="text-neutral-900 hover:underline font-medium"
           >
             the code
           </a>{" "}
