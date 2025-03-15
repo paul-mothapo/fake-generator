@@ -26,3 +26,40 @@
 
 5. **Submitting a Pull Request**  
    Only submit pull requests to the **pre-prod** branch.
+
+## Docker Deployment
+
+### Using Docker
+
+1. **Build the Docker Image**
+   ```bash
+   docker build -t fake-generator .
+   ```
+
+2. **Run the Container**
+   ```bash
+   docker run -p 3000:3000 fake-generator
+   ```
+
+3. **Access the Application**
+   Visit [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Using Docker Compose
+
+1. **Start the Application**
+   ```bash
+   docker-compose up -d
+   ```
+
+2. **Stop the Application**
+   ```bash
+   docker-compose down
+   ```
+
+### Development with Docker
+
+For development with hot-reloading:
+
+```bash
+docker-compose -f docker-compose.dev.yml up
+```
