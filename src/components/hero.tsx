@@ -33,6 +33,13 @@ export default function HeroSection() {
                 <FileText className="mr-2 h-5 w-5" />
                 Generate Fake ID
               </Link>
+              <Link
+                href="/fake-passport"
+                className="inline-flex items-center justify-center px-6 py-3 bg-black hover:bg-gray-900 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5"
+              >
+                <FileText className="mr-2 h-5 w-5" />
+                Generate Fake Passport
+              </Link>
             </div>
 
             <div className="flex items-center text-sm text-gray-700 font-medium bg-gray-100 px-4 py-2 rounded-lg border border-gray-200">

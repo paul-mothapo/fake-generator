@@ -1,130 +1,142 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useEffect } from "react"
-import { Copy, RefreshCw, ChevronDown, ChevronUp } from "lucide-react"
-import toast, { Toaster } from "react-hot-toast"
+import { useState, useEffect } from "react";
+import { Copy, RefreshCw, ChevronDown, ChevronUp } from "lucide-react";
+import toast, { Toaster } from "react-hot-toast";
 
 export function FakeIdGenerator() {
-  const [year, setYear] = useState<string>("90")
-  const [month, setMonth] = useState<string>("01")
-  const [day, setDay] = useState<string>("01")
-  const [gender, setGender] = useState<string>("4") // Female by default
-  const [sequence, setSequence] = useState<string>("896")
-  const [citizenship, setCitizenship] = useState<string>("0") // Citizen by default
-  const [idNumber, setIdNumber] = useState<string>("")
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [year, setYear] = useState<string>("90");
+  const [month, setMonth] = useState<string>("01");
+  const [day, setDay] = useState<string>("01");
+  const [gender, setGender] = useState<string>("4"); // Female by default
+  const [sequence, setSequence] = useState<string>("896");
+  const [citizenship, setCitizenship] = useState<string>("0"); // Citizen by default
+  const [idNumber, setIdNumber] = useState<string>("");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   // Calculate the Luhn digit
   const calculateCheckDigit = (digitsAsString: string): number => {
     const digits = digitsAsString
       .replace(/\D/g, "")
       .split("")
-      .map((d) => Number(d))
+      .map((d) => Number(d));
     const checkSum = digits
       .reverse()
       .map((d, ix) => {
         if (ix % 2 === 0) {
-          d *= 2
+          d *= 2;
           if (d > 9) {
-            d -= 9
+            d -= 9;
           }
         }
-        return d
+        return d;
       })
-      .reduce((memo, d) => (memo += d), 0)
-    return (checkSum * 9) % 10
-  }
+      .reduce((memo, d) => (memo += d), 0);
+    return (checkSum * 9) % 10;
+  };
 
   // Generate ID number
   const generateIdNumber = () => {
-    const withoutCheckDigit = `${year}${month}${day}${gender}${sequence}${citizenship}8`
-    const checkDigit = calculateCheckDigit(withoutCheckDigit)
-    setIdNumber(`${withoutCheckDigit}${checkDigit}`)
-    toast.success("ID number generated successfully")
-  }
+    const withoutCheckDigit = `${year}${month}${day}${gender}${sequence}${citizenship}8`;
+    const checkDigit = calculateCheckDigit(withoutCheckDigit);
+    setIdNumber(`${withoutCheckDigit}${checkDigit}`);
+    toast.success("ID number generated successfully");
+  };
 
   // Generate options for select elements
   const generateOptions = (start: number, end: number, padZero = true) => {
-    const options = []
+    const options = [];
     for (let i = start; i <= end; i++) {
-      const value = padZero && i < 10 ? `0${i}` : `${i}`
-      options.push(value)
+      const value = padZero && i < 10 ? `0${i}` : `${i}`;
+      options.push(value);
     }
-    return options
-  }
+    return options;
+  };
 
   // Generate years (20-99)
-  const years = generateOptions(20, 99, false)
+  const years = generateOptions(20, 99, false);
 
   // Generate months (01-12)
-  const months = generateOptions(1, 12)
+  const months = generateOptions(1, 12);
 
   // Generate days (01-31)
-  const days = generateOptions(1, 31)
+  const days = generateOptions(1, 31);
 
   // Generate sequence numbers (000-999)
-  const sequences = Array.from({ length: 1000 }, (_, i) => i.toString().padStart(3, "0"))
+  const sequences = Array.from({ length: 1000 }, (_, i) =>
+    i.toString().padStart(3, "0")
+  );
 
   // Calculate age based on year
   const calculateAge = (birthYear: string) => {
-    const currentYear = new Date().getFullYear()
+    const currentYear = new Date().getFullYear();
     const fullBirthYear =
-      Number.parseInt(birthYear) < 20 ? 2000 + Number.parseInt(birthYear) : 1900 + Number.parseInt(birthYear)
-    return currentYear - fullBirthYear
-  }
+      Number.parseInt(birthYear) < 20
+        ? 2000 + Number.parseInt(birthYear)
+        : 1900 + Number.parseInt(birthYear);
+    return currentYear - fullBirthYear;
+  };
 
   // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    generateIdNumber()
-  }
+    e.preventDefault();
+    generateIdNumber();
+  };
 
   // Randomize all fields
   const randomize = () => {
-    const randomYear = years[Math.floor(Math.random() * years.length)]
-    const randomMonth = months[Math.floor(Math.random() * months.length)]
-    const randomDay = days[Math.floor(Math.random() * days.length)]
-    const randomGender = Math.random() > 0.5 ? "5" : "4"
-    const randomSequence = sequences[Math.floor(Math.random() * sequences.length)]
-    const randomCitizenship = Math.random() > 0.2 ? "0" : "1" // 80% chance of citizen
+    const randomYear = years[Math.floor(Math.random() * years.length)];
+    const randomMonth = months[Math.floor(Math.random() * months.length)];
+    const randomDay = days[Math.floor(Math.random() * days.length)];
+    const randomGender = Math.random() > 0.5 ? "5" : "4";
+    const randomSequence =
+      sequences[Math.floor(Math.random() * sequences.length)];
+    const randomCitizenship = Math.random() > 0.2 ? "0" : "1"; // 80% chance of citizen
 
-    setYear(randomYear)
-    setMonth(randomMonth)
-    setDay(randomDay)
-    setGender(randomGender)
-    setSequence(randomSequence)
-    setCitizenship(randomCitizenship)
+    setYear(randomYear);
+    setMonth(randomMonth);
+    setDay(randomDay);
+    setGender(randomGender);
+    setSequence(randomSequence);
+    setCitizenship(randomCitizenship);
 
     // Generate ID after a short delay to ensure state updates
     setTimeout(() => {
-      generateIdNumber()
-    }, 50)
-  }
+      generateIdNumber();
+    }, 50);
+  };
 
   // Copy to clipboard
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(idNumber)
-    toast.success("Copied to clipboard")
-  }
+    navigator.clipboard.writeText(idNumber);
+    toast.success("Copied to clipboard");
+  };
 
   // Generate ID number on initial render
   useEffect(() => {
-    generateIdNumber()
-  }, [])
+    generateIdNumber();
+  }, []);
 
   return (
     <div className="container mx-auto px-4 py-8">
       <Toaster position="top-right" />
 
-      <h1 className="text-3xl font-bold mb-6 text-gray-900" aria-label="Generate Fake South African ID Numbers">Generate (Fake) South-African ID Numbers</h1>
+      <h1
+        className="text-3xl font-bold mb-6 text-gray-900"
+        aria-label="Generate Fake South African ID Numbers"
+      >
+        Generate (Fake) South-African ID Numbers
+      </h1>
 
       <div className="flex flex-col lg:flex-row gap-6">
         <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200 lg:w-2/3">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold text-gray-900">ID Generator</h2>
+              <h2 className="text-xl font-semibold text-gray-900">
+                ID Generator
+              </h2>
               <button
                 type="button"
                 onClick={randomize}
@@ -137,7 +149,11 @@ export function FakeIdGenerator() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="space-y-2">
-                <label htmlFor="year" className="block text-sm font-medium text-gray-700" aria-label="Year of Birth">
+                <label
+                  htmlFor="year"
+                  className="block text-sm font-medium text-gray-700"
+                  aria-label="Year of Birth"
+                >
                   Year of Birth
                 </label>
                 <select
@@ -155,7 +171,11 @@ export function FakeIdGenerator() {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="month" className="block text-sm font-medium text-gray-700" aria-label="Month of Birth">
+                <label
+                  htmlFor="month"
+                  className="block text-sm font-medium text-gray-700"
+                  aria-label="Month of Birth"
+                >
                   Month of Birth
                 </label>
                 <select
@@ -173,7 +193,11 @@ export function FakeIdGenerator() {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="day" className="block text-sm font-medium text-gray-700" aria-label="Day of Birth">
+                <label
+                  htmlFor="day"
+                  className="block text-sm font-medium text-gray-700"
+                  aria-label="Day of Birth"
+                >
                   Day of Birth
                 </label>
                 <select
@@ -192,7 +216,12 @@ export function FakeIdGenerator() {
             </div>
 
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700" aria-label="Gender">Gender</label>
+              <label
+                className="block text-sm font-medium text-gray-700"
+                aria-label="Gender"
+              >
+                Gender
+              </label>
               <div className="flex space-x-4">
                 <div className="flex items-center">
                   <input
@@ -204,7 +233,10 @@ export function FakeIdGenerator() {
                     onChange={() => setGender("4")}
                     className="h-4 w-4 text-black focus:ring-gray-500 border-gray-300"
                   />
-                  <label htmlFor="female" className="ml-2 text-sm text-gray-700">
+                  <label
+                    htmlFor="female"
+                    className="ml-2 text-sm text-gray-700"
+                  >
                     Female
                   </label>
                 </div>
@@ -245,7 +277,11 @@ export function FakeIdGenerator() {
               {isOpen && (
                 <div className="mt-4 space-y-4 p-4 bg-gray-50 rounded-md border border-gray-200">
                   <div className="space-y-2">
-                    <label htmlFor="sequence" className="block text-sm font-medium text-gray-700" aria-label="Sequence">
+                    <label
+                      htmlFor="sequence"
+                      className="block text-sm font-medium text-gray-700"
+                      aria-label="Sequence"
+                    >
                       Sequence
                     </label>
                     <select
@@ -264,7 +300,12 @@ export function FakeIdGenerator() {
                   </div>
 
                   <div className="space-y-2">
-                    <label className="block text-sm font-medium text-gray-700" aria-label="Citizenship">Citizenship</label>
+                    <label
+                      className="block text-sm font-medium text-gray-700"
+                      aria-label="Citizenship"
+                    >
+                      Citizenship
+                    </label>
                     <div className="flex space-x-4">
                       <div className="flex items-center">
                         <input
@@ -276,7 +317,10 @@ export function FakeIdGenerator() {
                           onChange={() => setCitizenship("0")}
                           className="h-4 w-4 text-black focus:ring-gray-500 border-gray-300"
                         />
-                        <label htmlFor="citizen" className="ml-2 text-sm text-gray-700">
+                        <label
+                          htmlFor="citizen"
+                          className="ml-2 text-sm text-gray-700"
+                        >
                           Citizen
                         </label>
                       </div>
@@ -290,7 +334,10 @@ export function FakeIdGenerator() {
                           onChange={() => setCitizenship("1")}
                           className="h-4 w-4 text-black focus:ring-gray-500 border-gray-300"
                         />
-                        <label htmlFor="resident" className="ml-2 text-sm text-gray-700">
+                        <label
+                          htmlFor="resident"
+                          className="ml-2 text-sm text-gray-700"
+                        >
                           Resident
                         </label>
                       </div>
@@ -314,7 +361,9 @@ export function FakeIdGenerator() {
           <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200 sticky top-4">
             <h2 className="text-xl font-semibold mb-4 text-gray-900">Result</h2>
             <div className="p-4 bg-gray-50 rounded-md border border-gray-200">
-              <p className="text-lg font-mono break-all text-gray-800">{idNumber}</p>
+              <p className="text-lg font-mono break-all text-gray-800">
+                {idNumber}
+              </p>
             </div>
             <div className="mt-4">
               <button
@@ -329,7 +378,9 @@ export function FakeIdGenerator() {
       </div>
 
       <div className="mt-56 max-w-7xl mx-auto left-0 right-0 bg-white p-4 border-t border-gray-200">
-        <h2 className="text-xl font-semibold mb-4 text-gray-900">More Information</h2>
+        <h2 className="text-xl font-semibold mb-4 text-gray-900">
+          More Information
+        </h2>
         <p className="mb-2 text-gray-700">
           See{" "}
           <a
@@ -359,6 +410,5 @@ export function FakeIdGenerator() {
         </p>
       </div>
     </div>
-  )
+  );
 }
-
